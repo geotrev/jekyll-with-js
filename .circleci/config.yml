@@ -50,13 +50,17 @@ jobs:
       - run: npm run build
       - deploy:
           name: Deploy to Github Pages
-          command: bash .circleci/deploy.sh
+          command: bash .bin/deploy.sh
 
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - test:
           requires:
             - build
