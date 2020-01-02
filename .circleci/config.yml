@@ -1,0 +1,70 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/repo-working-dir
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo-working-dir
+
+      - run: npm install
+      - save_cache:
+          key: v1-node-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+  test:
+    working_directory: ~/repo-working-dir
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-node-deps-{{ checksum "package.json" }}
+            - v1-node-deps-
+      - run: npm test
+
+  deploy:
+    working_directory: ~/repo-working-dir
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          keys:
+            - v1-node-deps-{{ checksum "package.json" }}
+            - v1-node-deps-
+      - add_ssh_keys:
+          fingerprints:
+            - "38:69:6d:27:55:79:cb:de:fe:3d:b1:ca:45:b6:73:74"
+      - run: gem install bundler:2.1.2
+      - run: bundle install
+      - run: npm run js:build
+      - run: npm run build
+      - deploy:
+          name: Deploy to Github Pages
+          command: bash .circleci/deploy.sh
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master

@@ -1,0 +1,10 @@
+# System files
+.DS_Store
+
+# NPM
+node_modules/
+
+# Jekyll
+.sass-cache/
+.jekyll-cache/
+assets/js/

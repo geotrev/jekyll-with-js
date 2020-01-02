@@ -1,0 +1,32 @@
+{
+  "name": "jekyll-with-js",
+  "version": "1.0.0",
+  "description": "Demo of adding a simple JS pipeline to a Jekyll static site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'INFO: No tests specified' && exit 0",
+    "watch": "bundle exec jekyll serve",
+    "build": "npm run build:scripts && bundle exec jekyll build",
+    "watch:scripts": "npm run build:scripts -- -w",
+    "build:scripts": "rollup -c"
+  },
+  "keywords": [
+    "jekyll",
+    "github",
+    "github pages",
+    "gh-pages",
+    "static site",
+    "javascript",
+    "rollup"
+  ],
+  "author": "George Treviranus",
+  "license": "Unlicense",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "rollup": "^1.27.14",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.3"
+  }
+}
