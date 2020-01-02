@@ -44,7 +44,7 @@ jobs:
             - v1-node-deps-
       - add_ssh_keys:
           fingerprints:
-            - "38:69:6d:27:55:79:cb:de:fe:3d:b1:ca:45:b6:73:74"
+            - "68:cc:f2:54:3a:ae:43:29:e7:03:3a:ce:f9:df:9c:6f"
       - run: gem install bundler:2.1.2
       - run: bundle install
       - run: npm run js:build
