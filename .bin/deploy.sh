@@ -28,6 +28,6 @@ rm -R _site/
 git add -fA
 git commit --allow-empty -m "$(git log $CIRCLE_BRANCH -1 --pretty=%B)"
 
-git push origin $CIRCLE_BRANCH:gh-pages
+git push -f origin $CIRCLE_BRANCH:gh-pages
 
 echo "Deployed successfully to branch gh-pages on $CIRCLE_REPOSITORY_URL"
