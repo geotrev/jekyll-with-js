@@ -46,7 +46,18 @@ jobs:
           fingerprints:
             - "68:cc:f2:54:3a:ae:43:29:e7:03:3a:ce:f9:df:9c:6f"
       - run: gem install bundler:2.1.2
+
+      - restore_cache:
+          keys:
+            - v1-gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - v1-gem-cache-{{ arch }}-{{ .Branch }}-
+            - v1-gem-cache-{{ arch }}-
       - run: bundle install
+      - save_cache:
+          paths:
+            - ~/.bundle
+          key: v1-gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+
       - run: npm run build
       - deploy:
           name: Deploy to Github Pages
