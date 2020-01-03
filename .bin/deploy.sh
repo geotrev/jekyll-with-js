@@ -18,7 +18,7 @@ git checkout $CIRCLE_BRANCH
 # Remove everything from the project root except:
 # - _site --> for static site; and
 # - .git --> for branch refs
-find . -maxdepth 1 ! -name '_site' ! -name '.git' -exec rm -rf {} \;
+find . -maxdepth 1 ! -name '_site' ! -name '.git' ! -name '.circleci' -exec rm -rf {} \;
 
 # Move contents of _site to project root, then remove _site folder
 mv _site/* .
