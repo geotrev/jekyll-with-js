@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "global.css",
+	"sources": [
+		"global.scss",
+		"_sass/_global.scss"
+	],
+	"sourcesContent": [
+		"@import \"global\";\n",
+		"// Add global styles here.\n\nbody {\n  padding: 24px;\n  margin: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell,\n    \"Helvetica Neue\", sans-serif;\n}\n"
+	],
+	"names": [],
+	"mappings": "ACEA,AAAA,IAAI,AAAC,CACH,OAAO,CAAE,IAAI,CACb,MAAM,CAAE,CAAC,CACT,WAAW,CAAE,mHACiB,CAC/B"
+}
