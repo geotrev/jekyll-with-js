@@ -4,12 +4,12 @@ import resolve from "rollup-plugin-node-resolve"
 import babel from "rollup-plugin-babel"
 import glob from "glob"
 
-const scriptPattern = path.resolve(__dirname, "_scripts/**/!(_)*.js")
+const scriptFiles = glob.sync(path.resolve(__dirname, "site/_scripts/**/!(_)*.js"))
 
-const inputs = glob.sync(scriptPattern).reduce((files, input) => {
+const inputs = scriptFiles.reduce((files, input) => {
   const parts = input.split("/")
   const fileKey = parts[parts.length - 1]
-  return { [fileKey]: input, ...files }
+  return { [fileKey]: path.resolve(__dirname, input), ...files }
 }, {})
 
 const outputs = Object.keys(inputs).reduce((files, file) => {
@@ -17,7 +17,7 @@ const outputs = Object.keys(inputs).reduce((files, file) => {
   const parts = inputPath.split("/")
   const pathIndex = parts.indexOf("_scripts") + 1
   const outputPath = parts.slice(pathIndex).join("/")
-  return { [file]: `assets/js/${outputPath}`, ...files }
+  return { [file]: path.resolve(__dirname, `site/assets/js/${outputPath}`), ...files }
 }, {})
 
 const bundles = Object.keys(inputs).map(key => {
@@ -26,7 +26,7 @@ const bundles = Object.keys(inputs).map(key => {
     output: {
       file: outputs[key],
       format: "umd",
-      sourcemap: true,
+      sourcemap: process.env.BABEL_ENV === "production" ? false : true,
     },
     plugins: [
       resolve(),

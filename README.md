@@ -1,9 +1,14 @@
-# Jekyll with JS
+# Jekyll with JS -> Netlify
 
-A template showing a CI/CD-powered Jekyll site with a flexible JS pipeline.
+Deploys a Jekyll static ssite to Netlify. Has a basic JS pipeline.
 
 ## Requirements
 
-- Add env variables to your CircleCI project - USER_NAME and USER_EMAIL - to match your local git setup.
-- Have [read/write access](https://circleci.com/docs/2.0/gh-bb-integration/#deployment-keys-and-user-keys) between your CircleCI and the repo.
-- Have a `gh-pages` branch already existing.
+- Use `nvm` or whichever tool(s) you prefer to manage node and npm versions.
+- Run `npm i` to get node dependencies.
+- Set ruby and bundler versions in `.ruby-version` and `.bundle/config`, respectively.
+- Use rvm or whichever tool(s) you prefer to manage ruby versions.
+- Run `gem install bundler && bundle` to get ruby gem dependencies.
+- Have Github or Gitlab, and push your fork of this repo to it.
+- Create or open your Netlify account and whitelist this repo as a deploy target.
+- Push to master and watch the deploy fireworks fly.
