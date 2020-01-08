@@ -1,0 +1,11 @@
+sass:
+  sass_dir: _sass
+  style: compressed
+  sourcemap: never
+plugins:
+  - jekyll-gzip
+gzip:
+  extensions:
+    - ".html"
+    - ".css"
+    - ".js"

@@ -1,14 +1,16 @@
 {
   "name": "jekyll-with-js",
   "version": "1.0.0",
-  "description": "Demo of adding a simple JS pipeline to a Jekyll static site",
+  "description": "Demo of adding a simple JS pipeline + env support to a Jekyll static site",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'INFO: No tests specified' && exit 0",
-    "watch": "bundle exec jekyll serve",
-    "build": "npm run build:scripts && bundle exec jekyll build",
-    "watch:scripts": "npm run build:scripts -- -w",
-    "build:scripts": "rollup -c"
+    "test": "echo 'INFO: No tests specified'",
+    "build": "npm run build:scripts && bundle exec jekyll build --config _config.yml,_config-dev.yml",
+    "build:prod": "npm run build:scripts:prod && JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config-prod.yml",
+    "watch": "npm run build:scripts && bundle exec jekyll serve",
+    "build:scripts": "rollup -c",
+    "build:scripts:prod": "rm -rf assets/js/ && BABEL_ENV=production rollup -c",
+    "watch:scripts": "npm run build:scripts -- -w"
   },
   "keywords": [
     "jekyll",

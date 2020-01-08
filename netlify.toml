@@ -1,0 +1,10 @@
+[Settings]
+
+[build]
+  base = ""
+  publish = "_site"
+  command = "npm run build"
+  environemnt = { NODE_VERSION = "12.12.0", NPM_VERSION = "6.13.4" }
+
+[context.master]
+  command = "npm run build:prod"
