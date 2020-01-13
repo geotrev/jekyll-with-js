@@ -22,7 +22,7 @@ const outputs = Object.keys(inputs).reduce((files, file) => {
   const parts = inputPath.split("/")
   const pathIndex = parts.indexOf("_scripts") + 1
   const outputPath = parts.slice(pathIndex).join("/")
-  return { [file]: absolutePath(`${scriptsTarget}${outputPath}`), ...files }
+  return { [file]: absolutePath(scriptsTarget + outputPath), ...files }
 }, {})
 
 const bundles = Object.keys(inputs).map(key => {

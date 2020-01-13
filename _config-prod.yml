@@ -11,6 +11,7 @@ gzip:
     - ".css"
     - ".js"
 autoprefixer:
+  # This should match .browserslistrc
   browsers:
     - edge >= 15
     - firefox >= 54

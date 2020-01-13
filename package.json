@@ -10,7 +10,7 @@
     "watch": "npm run build:scripts && bundle exec jekyll serve",
     "build:scripts": "npm run clean:scripts && rollup -c",
     "build:scripts:prod": "npm run clean:scripts && BABEL_ENV=production rollup -c",
-    "clean:scripts": "rimraf site/assets/js/",
+    "clean:scripts": "rm -rf site/assets/js/",
     "watch:scripts": "npm run build:scripts -- -w"
   },
   "keywords": [
@@ -30,7 +30,6 @@
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "glob": "^7.1.6",
-    "rimraf": "^3.0.0",
     "rollup": "^1.27.14",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.1.3"
