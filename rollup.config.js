@@ -1,3 +1,5 @@
+// Find plugins: https://github.com/rollup/awesome
+
 import glob from "glob"
 import path from "path"
 import resolve from "rollup-plugin-node-resolve"
