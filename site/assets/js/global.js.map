@@ -1,1 +1,0 @@
-{"version":3,"file":"global.js","sources":["../../_scripts/global.js"],"sourcesContent":["console.log(\"Global js file ftw!\")\n"],"names":["console","log"],"mappings":"2FAAAA,QAAQC,IAAI"}
