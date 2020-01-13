@@ -8,8 +8,9 @@
     "build": "npm run build:scripts && bundle exec jekyll build --config _config.yml,_config-dev.yml",
     "build:prod": "npm run build:scripts:prod && JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config-prod.yml",
     "watch": "npm run build:scripts && bundle exec jekyll serve",
-    "build:scripts": "rollup -c",
-    "build:scripts:prod": "rm -rf assets/js/ && BABEL_ENV=production rollup -c",
+    "build:scripts": "npm run clean:scripts && rollup -c",
+    "build:scripts:prod": "npm run clean:scripts && BABEL_ENV=production rollup -c",
+    "clean:scripts": "rimraf site/assets/js/",
     "watch:scripts": "npm run build:scripts -- -w"
   },
   "keywords": [
@@ -27,8 +28,10 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "glob": "^7.1.6",
+    "rimraf": "^3.0.0",
     "rollup": "^1.27.14",
     "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.3"
   }

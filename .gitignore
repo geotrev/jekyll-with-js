@@ -7,5 +7,5 @@ node_modules/
 # Jekyll
 .sass-cache/
 .jekyll-cache/
-assets/js/
+site/assets/js/
 _site/
