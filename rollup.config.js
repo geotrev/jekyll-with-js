@@ -2,10 +2,10 @@
 
 import glob from "glob"
 import path from "path"
-import resolve from "rollup-plugin-node-resolve"
-import babel from "rollup-plugin-babel"
 import { terser } from "rollup-plugin-terser"
-import commonjs from "rollup-plugin-commonjs"
+import resolve from "@rollup/plugin-node-resolve"
+import babel from "rollup-plugin-babel"
+import commonjs from "@rollup/plugin-commonjs"
 
 const absolutePath = dirPath => path.resolve(__dirname, dirPath)
 const scriptFiles = glob.sync(absolutePath("site/_scripts/**/!(_)*.js"))
@@ -37,7 +37,7 @@ const bundles = Object.keys(inputs).map(key => {
     }),
   ]
 
-  const sourcemap = true
+  let sourcemap = true
 
   if (prodEnv) {
     plugins.push(terser())
